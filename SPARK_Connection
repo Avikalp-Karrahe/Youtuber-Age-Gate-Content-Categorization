@@ -1,0 +1,23 @@
+val df_age = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "AGE").option("user", "root").option("password", "password").load()
+df_age.createOrReplaceTempView("age") 
+
+val df_country = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "COUNTRY").option("user", "root").option("password", "password").load()
+df_country.createOrReplaceTempView("country") 
+
+val df_gender = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "GENDER").option("user", "root").option("password", "password").load()  
+df_gender.createOrReplaceTempView("gender")
+
+val df_person = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "PERSON").option("user", "root").option("password", "password").load()
+df_person.createOrReplaceTempView("person")
+
+val df_TargetUser = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "TargetUser").option("user", "root").option("password", "password").load()
+df_TargetUser.createOrReplaceTempView("TargetUser")
+
+val df_TargetVideo = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "TargetVideo").option("user", "root").option("password", "password").load()
+df_TargetVideo.createOrReplaceTempView("TargetVideo")
+
+val df_Content_Category = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "YT_CONTENT_CATEGORY").option("user", "root").option("password", "password").load()
+df_Content_Category.createOrReplaceTempView("Content_Category")
+
+val df_Content = spark.read.format("jdbc").option("driver","com.mysql.cj.jdbc.Driver").option("url", "jdbc:mysql://localhost:3306/ProjectDB").option("dbtable", "YT_VIDEO_CONTENT").option("user", "root").option("password", "password").load()
+df_Content.createOrReplaceTempView("content")
