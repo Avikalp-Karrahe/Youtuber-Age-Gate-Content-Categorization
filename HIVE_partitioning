@@ -1,0 +1,20 @@
+create external table target1 (Person_ID Int, Person_Name varchar(50), Person_Gender varchar(10), Person_Age Int, Phone_no varchar(20)) partitioned by (Country_name varchar(20)) row format delimited fields terminated by ',' lines terminated by '\n' stored as textfile location '/output/country';
+
+create TEMPORARY table temptarget (Person_ID Int, Person_Name varchar(50), Person_Gender varchar(10), Person_Age Int, Phone_no varchar(20), Country_name varchar(20)) row format delimited fields terminated by ',' lines terminated by '\n';
+
+for dynamic partition, 
+set hive.exec.dynamic.partition=true;
+
+if mode is nonstrict then only we can achieve dynamic partition 
+set hive.exec.dynamic.partition.mode=nonstrict; 
+
+then we can implement dynamic partition:
+load data local inpath '/home/ubh01/Downloads/TargetUser.csv' into table temptarget;
+
+
+Inserting the partitioned table into temporary table
+insert into table target1 partition(country_name) select person_id, person_name, person_gender, person_age, phone_no, country_name from temptarget;
+
+show partitions target1;
+
+select * from target1;
