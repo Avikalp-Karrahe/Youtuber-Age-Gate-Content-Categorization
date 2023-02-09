@@ -1,0 +1,11 @@
+Creating a new directory in HDFS 
+hdfs dfs -mkdir /input
+
+To check the directory is created
+hdfs dfs -ls /
+
+Importing the target file into HDFS directory
+hdfs dfs -put /home/ubh01/Downloads/TargetUser.csv /input/
+
+To check the file is in HDFS directory
+hdfs dfs -ls /input
